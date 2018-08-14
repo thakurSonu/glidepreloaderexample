@@ -1,5 +1,3 @@
-package com.virinchi.core;
-
 import android.content.Context;
 import android.os.Process;
 import android.util.Log;
@@ -19,7 +17,7 @@ import java.util.concurrent.ExecutionException;
  */
 public final class GlidePreloadUtils {
 
-  private static String TAG = "GlidePreloadUtils";
+  private static String TAG = "GlidePre";
 
 
   public static class BackgroundThumbnailFetcher implements Runnable {
@@ -48,9 +46,9 @@ public final class GlidePreloadUtils {
 
         for (MixList photo : photos) {
 
-         if (photo.getProduct_type() == ProductUtils.Companion.getPRODUCT_FEED()) {
+         if (photo.getProduct_type() == 1) {
 
-            for (MediaList mediaList : photo.getProduct().getFeed().getMedia_list()) {
+            for (MediaList mediaList : photo.getProduct().getMedia_list()) {
 
               String downloadUrl = "";
               if (mediaList.getFileType().equalsIgnoreCase("image"))
@@ -78,7 +76,7 @@ public final class GlidePreloadUtils {
     FutureTarget<File> futureTarget = GlideApp.with(context)
             .downloadOnly()
             .load(downloadUrl)
-            .submit(Picasso_handler.SQUARE_THUMB_SIZE, Picasso_handler.SQUARE_THUMB_SIZE);
+            .submit(SQUARE_THUMB_SIZE, SQUARE_THUMB_SIZE);
 
     try {
       futureTarget.get();
